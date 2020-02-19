@@ -1,7 +1,8 @@
 from util.poker_util import *
 
 class Solution:
-    cards = create_card(range(1, 14), ["h", "c", "d",
+    p_util = poker_util()
+    cards = p_util.create_card(range(1, 14), ["h", "c", "d",
                                        "s"])  # creates tuples of cards 1 to 13 of the 4 suits (hearts, clubs, diamonds, spades). Aces is encoded as 1
 
     hands_num = {"high card": 1, "pair": 2, "2 pair": 3, "3 kind": 4, "str": 5, "flush": 6, "full house": 7,
@@ -25,9 +26,9 @@ class Solution:
 
         """
 
-        mine = calculate_hand(my_hand + board)
+        mine = self.p_util.calculate_hand(my_hand + board)
 
-        opposite = calculate_possibility(board, my_hand, self.hands_num, self.cards)
+        opposite = self.p_util.calculate_possibility(board, my_hand, self.hands_num, self.cards)
         if self.hands_num[mine] > opposite:
             return ("Bet. Your hand is the highest:", mine)
         elif self.hands_num[mine] == opposite:
